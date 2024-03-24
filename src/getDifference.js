@@ -32,7 +32,8 @@ const getDeepEqual = (file1, file2) => {
   return convertToString(turnOverCombiArrays, arrayFile1, arrayFile2, file1, file2);
 };
 
-const getDiff = (filepath1, filepath2) => {
+// eslint-disable-next-line import/prefer-default-export
+export const getDiff = (filepath1, filepath2) => {
   const typeFile1 = path.extname(filepath1).slice(1);
   const typeFile2 = path.extname(filepath2).slice(1);
 
@@ -46,5 +47,3 @@ const getDiff = (filepath1, filepath2) => {
   const parsingFil2 = parse(readFile2, typeFile2);
   return getDeepEqual(parsingFil1, parsingFil2);
 };
-
-export default getDiff;
