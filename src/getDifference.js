@@ -1,20 +1,19 @@
 import { readFileSync } from 'fs';
-import parse from './parser.js';
 import _ from 'lodash';
-import * as path from 'path'
-
+import * as path from 'path';
+import parse from './parser.js';
 
 const convertToString = (turnOverCombiArrays, arrayFile1, arrayFile2, file1, file2) => {
   let acc = '';
   (() => {
+    // eslint-disable-next-line array-callback-return
     turnOverCombiArrays.map((key) => {
       if (arrayFile2.includes(key)) {
         if (_.isEqual(file2[key], file1[key])) {
           acc += `    ${key}: ${file1[key]}\n`;
         } else if (arrayFile2.includes(key) && !arrayFile1.includes(key)) {
           acc += `  + ${key}: ${file2[key]}\n`;
-        }
-        else {
+        } else {
           acc += `  - ${key}: ${file1[key]}\n  + ${key}: ${file2[key]}\n`;
         }
       } else {
@@ -29,7 +28,7 @@ const getDeepEqual = (file1, file2) => {
   const arrayFile1 = Object.keys(file1);
   const arrayFile2 = Object.keys(file2);
   const combineArrays = _.union(arrayFile1, arrayFile2);
-  const turnOverCombiArrays = _.sortBy(combineArrays)
+  const turnOverCombiArrays = _.sortBy(combineArrays);
   return convertToString(turnOverCombiArrays, arrayFile1, arrayFile2, file1, file2);
 };
 
@@ -48,5 +47,4 @@ const getDiff = (filepath1, filepath2) => {
   return getDeepEqual(parsingFil1, parsingFil2);
 };
 
-
-export default getDiff; 
+export default getDiff;
