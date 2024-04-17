@@ -1,18 +1,43 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { test, expect } from '@jest/globals'; // импортируем джест
-import { readFileSync } from 'fs'; // читаем файл
-import path from 'path'; // модуль чтения путей
-import { fileURLToPath } from 'url'; // функция декодирования элементов
-import { getDiff } from '../src/getDifference.js'; // функция итогового поиска разницы
+import path from 'path';
+import fs from 'fs';
+import url from 'url';
+import { expect, test } from '@jest/globals';
+import genDiff from '../src/index.js';
 
-const __filename = fileURLToPath(import.meta.url); // поулчаем абсолюный путь до файла
-const __dirname = path.dirname(__filename); // получаем название папки в которой находимся
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename); // метод джоин генирирует путь
-test('file json', () => {
-  const filename1 = getFixturePath('file1.json');
-  const filename2 = getFixturePath('file2.json');
-  const resultName = getFixturePath('file_result.txt');
-  const result = readFileSync(resultName, 'utf8');
-  expect(getDiff(filename1, filename2)).toBe(result);
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+
+const fileJSON1 = getFixturePath('file1.json');
+const fileJSON2 = getFixturePath('file2.json');
+
+const fileYML1 = getFixturePath('file1.yml');
+const fileYML2 = getFixturePath('file2.yml');
+
+const result = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+const resultStylish = result('result_STYLIH.txt');
+const resultPlain = result('result_PLAIN.txt');
+const resultJson = result('result_JSON.txt');
+
+test.each([
+  {
+    file1: fileJSON1, file2: fileJSON2, formatName: 'stylish', expected: resultStylish,
+  },
+  {
+    file1: fileYML1, file2: fileYML2, formatName: 'stylish', expected: resultStylish,
+  },
+  {
+    file1: fileJSON1, file2: fileJSON2, formatName: 'plain', expected: resultPlain,
+  },
+  {
+    file1: fileYML1, file2: fileYML2, formatName: 'plain', expected: resultPlain,
+  },
+  {
+    file1: fileYML1, file2: fileYML2, formatName: 'json', expected: resultJson,
+  },
+])('diff tests', ({
+  file1, file2, formatName, expected,
+}) => {
+  expect(genDiff(file1, file2, formatName)).toBe(expected);
 });
