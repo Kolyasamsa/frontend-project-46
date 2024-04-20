@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import { readFileSync } from 'fs';
 import path from 'path';
 import { cwd } from 'process';
@@ -8,20 +6,17 @@ import getDifferenceTree from './getDifference.js';
 import formatter from './formatter/index.js';
 
 const getPath = (filepath) => path.resolve(cwd(), filepath);
-const getFileFormat = (filepath) => path.extname(filepath).slice(1);
+const getFileFormat = (filename) => path.extname(filename).slice(1);
+const readFile = (filepath) => readFileSync(getPath(filepath), 'utf-8');
 
-const genDiff = (filepath1, filepath2, format = 'stylish') => {
-  const path1 = getPath(filepath1);
-  const path2 = getPath(filepath2);
+const genDiff = (file1, file2, formatName = 'stylish') => {
+  const content1 = readFile(file1);
+  const content2 = readFile(file2);
+  const data1 = parser(content1, getFileFormat(file1));
+  const data2 = parser(content2, getFileFormat(file2));
+  const tree = getDifferenceTree(data1, data2);
 
-  const obj1 = readFileSync(filepath1, 'utf-8');
-  const obj2 = readFileSync(filepath2, 'utf-8');
-
-  const parseObj1 = parser(obj1, getFileFormat(path1));
-  const parseObj2 = parser(obj2, getFileFormat(path2));
-
-  const result = getDifferenceTree(parseObj1, parseObj2);
-  return formatter(result, format);
+  return formatter(tree, formatName);
 };
 
 export default genDiff;

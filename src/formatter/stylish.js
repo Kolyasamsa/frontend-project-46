@@ -38,7 +38,7 @@ const makeStylishDiff = (tree) => {
         return `${currentIndent(depth)}- ${node.key}: ${stringify(node.value, depth + 1)}`;
       }
       case 'changed': {
-        return [`${currentIndent(depth)}- ${node.key}: ${stringify(node.value, depth + 1)}`,
+        return [`${currentIndent(depth)}- ${node.key}: ${stringify(node.value1, depth + 1)}`,
           `${currentIndent(depth)}+ ${node.key}: ${stringify(node.value2, depth + 1)}`];
       }
       case 'unchanged': {

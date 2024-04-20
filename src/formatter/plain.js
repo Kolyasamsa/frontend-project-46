@@ -29,7 +29,7 @@ export function makePlainDiff(tree) {
         return `Property '${currentPath}' was removed`;
       }
       case 'changed': {
-        return `Property '${currentPath}' was updated. From ${getValue(child.value)} to ${getValue(child.value2)}`;
+        return `Property '${currentPath}' was updated. From ${getValue(child.value1)} to ${getValue(child.value2)}`;
       }
       case 'unchanged': {
         return null;

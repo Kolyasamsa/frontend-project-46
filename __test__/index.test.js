@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import url from 'url';
-import { expect, test } from '@jest/globals';
+import { expect, describe, test } from '@jest/globals';
 import genDiff from '../src/index.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
@@ -20,24 +20,32 @@ const resultStylish = result('result_STYLIH.txt');
 const resultPlain = result('result_PLAIN.txt');
 const resultJson = result('result_JSON.txt');
 
-test.each([
+describe.each([
   {
-    file1: fileJSON1, file2: fileJSON2, formatName: 'stylish', expected: resultStylish,
+    formatName: 'stylish',
+    expected: resultStylish,
   },
   {
-    file1: fileYML1, file2: fileYML2, formatName: 'stylish', expected: resultStylish,
+    formatName: 'plain',
+    expected: resultPlain,
   },
   {
-    file1: fileJSON1, file2: fileJSON2, formatName: 'plain', expected: resultPlain,
+    formatName: 'json',
+    expected: resultJson,
   },
-  {
-    file1: fileYML1, file2: fileYML2, formatName: 'plain', expected: resultPlain,
-  },
-  {
-    file1: fileYML1, file2: fileYML2, formatName: 'json', expected: resultJson,
-  },
-])('diff tests', ({
-  file1, file2, formatName, expected,
-}) => {
-  expect(genDiff(file1, file2, formatName)).toBe(expected);
+])('format tests', ({ formatName, expected }) => {
+  test.each([
+    {
+      formatName,
+      file1: fileJSON1,
+      file2: fileJSON2,
+    },
+    {
+      formatName,
+      file1: fileYML1,
+      file2: fileYML2,
+    },
+  ])(`diff test for ${formatName} format`, ({ file1, file2 }) => {
+    expect(genDiff(file1, file2, formatName)).toBe(expected);
+  });
 });

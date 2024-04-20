@@ -37,7 +37,7 @@ const buildAST = (data1, data2) => {
     return {
       type: 'changed',
       key,
-      value: data1[key],
+      value1: data1[key],
       value2: data2[key],
     };
   });

@@ -1,27 +1,36 @@
-### Hexlet tests and linter status:
+## Name and description
+`Gendiff - a command line utility that compares two files and prints the result. Can work with JSON and YML. Outputs the result in three formats: stylish (default), plain and json.`
 
-[![Actions Status](https://github.com/Kolyasamsa/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kolyasamsa/frontend-project-46/actions)
+**Features of the calculator:**
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/b7b7b1d70b2ed5b48945/maintainability)](https://codeclimate.com/github/Kolyasamsa/frontend-project-46/maintainability)
+- Supports various input formats: yml, json
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/b7b7b1d70b2ed5b48945/test_coverage)](https://codeclimate.com/github/Kolyasamsa/frontend-project-46/test_coverage)
-
----
-
+- Report generation as plain text, stylish and json
+___
 ### setup
-
 ```
 git clone 'git@github.com:Kolyasamsa/frontend-project-46.git'
 make install
 make publish
 npm link
 ```
-
+___
 ### Launch example
+1. Difference between 2 files with stylish formatter (set by default):
 
-1. diffefence between two JSON files, format default (stylish)
-[![asciicast](https://asciinema.org/a/sBMGx90yCKVrPqnZApARavzb2.svg)](https://asciinema.org/a/sBMGx90yCKVrPqnZApARavzb2)
+   [![asciicast](https://asciinema.org/a/rpMyTaZk4ME1xhu6U1zPxIDqd.svg)](https://asciinema.org/a/rpMyTaZk4ME1xhu6U1zPxIDqd)
 
-2. difference betveen two YML files, format plain 
-[![asciicast](https://asciinema.org/a/ElsTlU7URqew7NYXwjbzGFDqK.svg)](https://asciinema.org/a/ElsTlU7URqew7NYXwjbzGFDqK)
+2. Difference between 2 files with plain formatter:
 
+   [![asciicast](https://asciinema.org/a/EtpJMxyraiWQsukFU6odit8a8.svg)](https://asciinema.org/a/EtpJMxyraiWQsukFU6odit8a8)
+
+3. Difference between 2 files with JSON formatter:
+
+   [![asciicast](https://asciinema.org/a/qubRYyuOqUFX1hfnqf5wFcfeP.svg)](https://asciinema.org/a/qubRYyuOqUFX1hfnqf5wFcfeP)
+
+___
+### Hexlet tests and linter status:
+
+[![Actions Status](https://github.com/Kolyasamsa/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kolyasamsa/frontend-project-46/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b7b7b1d70b2ed5b48945/maintainability)](https://codeclimate.com/github/Kolyasamsa/frontend-project-46/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b7b7b1d70b2ed5b48945/test_coverage)](https://codeclimate.com/github/Kolyasamsa/frontend-project-46/test_coverage)
