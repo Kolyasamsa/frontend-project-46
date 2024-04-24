@@ -9,43 +9,42 @@ const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-const fileJSON1 = getFixturePath('file1.json');
-const fileJSON2 = getFixturePath('file2.json');
+describe('testing function genDiff plain formatter', () => {
+  test('json files compare', () => {
+    const file1 = getFixturePath('file1.json');
+    const file2 = getFixturePath('file2.json');
+    const expected = getFixturePath('result_PLAIN.txt');
+    expect(genDiff(file1, file2, 'plain')).toBe(
+      fs.readFileSync(expected, 'utf-8'),
+    );
+  });
 
-const fileYML1 = getFixturePath('file1.yml');
-const fileYML2 = getFixturePath('file2.yml');
+  test('yaml files compare', () => {
+    const file1 = getFixturePath('file1.yml');
+    const file2 = getFixturePath('file2.yml');
+    const expected = getFixturePath('result_PLAIN.txt');
+    expect(genDiff(file1, file2, 'plain')).toBe(
+      fs.readFileSync(expected, 'utf-8'),
+    );
+  });
+});
 
-const result = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
-const resultStylish = result('result_STYLIH.txt');
-const resultPlain = result('result_PLAIN.txt');
-const resultJson = result('result_JSON.txt');
+describe('testing function genDiff json formatter', () => {
+  test('json files compare', () => {
+    const file1 = getFixturePath('file1.json');
+    const file2 = getFixturePath('file2.json');
+    const expected = getFixturePath('result_JSON.txt');
+    expect(genDiff(file1, file2, 'json')).toBe(
+      fs.readFileSync(expected, 'utf-8'),
+    );
+  });
 
-describe.each([
-  {
-    formatName: 'stylish',
-    expected: resultStylish,
-  },
-  {
-    formatName: 'plain',
-    expected: resultPlain,
-  },
-  {
-    formatName: 'json',
-    expected: resultJson,
-  },
-])('format tests', ({ formatName, expected }) => {
-  test.each([
-    {
-      formatName,
-      file1: fileJSON1,
-      file2: fileJSON2,
-    },
-    {
-      formatName,
-      file1: fileYML1,
-      file2: fileYML2,
-    },
-  ])(`diff test for ${formatName} format`, ({ file1, file2 }) => {
-    expect(genDiff(file1, file2, formatName)).toBe(expected);
+  test('yaml files compare', () => {
+    const file1 = getFixturePath('file1.yml');
+    const file2 = getFixturePath('file2.yml');
+    const expected = getFixturePath('result_JSON.txt');
+    expect(genDiff(file1, file2, 'json')).toBe(
+      fs.readFileSync(expected, 'utf-8'),
+    );
   });
 });

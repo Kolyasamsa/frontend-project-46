@@ -1,5 +1,17 @@
-## Name and description
-`Gendiff - a command line utility that compares two files and prints the result. Can work with JSON and YML. Outputs the result in three formats: stylish (default), plain and json.`
+## Project "Difference Calculator"
+
+### Hexlet tests and linter status:
+
+[![Actions Status](https://github.com/Kolyasamsa/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kolyasamsa/frontend-project-46/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b7b7b1d70b2ed5b48945/maintainability)](https://codeclimate.com/github/Kolyasamsa/frontend-project-46/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b7b7b1d70b2ed5b48945/test_coverage)](https://codeclimate.com/github/Kolyasamsa/frontend-project-46/test_coverage)
+
+
+
+### Description
+`command line utility that compares two files and prints the result. Can work with JSON and YML. Outputs the result in three formats: stylish (default), plain and json.`
+
+---
 
 **Features of the calculator:**
 
@@ -26,11 +38,4 @@ ___
 
 3. Difference between 2 files with JSON formatter:
 
-   [![asciicast](https://asciinema.org/a/qubRYyuOqUFX1hfnqf5wFcfeP.svg)](https://asciinema.org/a/qubRYyuOqUFX1hfnqf5wFcfeP)
-
-___
-### Hexlet tests and linter status:
-
-[![Actions Status](https://github.com/Kolyasamsa/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kolyasamsa/frontend-project-46/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/b7b7b1d70b2ed5b48945/maintainability)](https://codeclimate.com/github/Kolyasamsa/frontend-project-46/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/b7b7b1d70b2ed5b48945/test_coverage)](https://codeclimate.com/github/Kolyasamsa/frontend-project-46/test_coverage)
+   [![asciicast](https://asciinema.org/a/5I1fXa6o75Pc7rv3Yi6tlwWi7.svg)](https://asciinema.org/a/5I1fXa6o75Pc7rv3Yi6tlwWi7)

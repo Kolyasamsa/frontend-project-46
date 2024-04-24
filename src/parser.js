@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import yaml from 'js-yaml';
 
 export default (data, ext) => {
