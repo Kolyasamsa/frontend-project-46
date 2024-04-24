@@ -1,4 +1,4 @@
-## Project "Difference Calculator"
+## Проект "вычислитель отличий"
 
 ### Hexlet tests and linter status:
 
